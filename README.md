@@ -26,17 +26,17 @@
 
 В корне проекта необходимо создать файл `.env` со следующим содержанием:
 
-######[ Django ] ######
+**[ Django ]** 
 DEBUG=1
 SECRET_KEY = 'example'
 DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
 
-######[ Postgresql ] ######
+**[ Postgresql ]**
 POSTGRES_USER = django_admin 
 POSTGRES_DB = movie_admin
 POSTGRES_PASSWORD = 1234
 
-######[ Django DB ] ######
+**[ Django DB ]**
 SQL_ENGINE=django.db.backends.postgresql
 SQL_DATABASE=movie_admin
 SQL_USER=django_admin
