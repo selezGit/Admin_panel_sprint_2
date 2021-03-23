@@ -2,14 +2,14 @@
 
 ## Описание сервиса
 
-Панель администратора для сайта с фильмами.
+Панель администратора для сайта с фильмами, по умолчанию находится по адресу http://localhost:80
 
 
 ## Используемые технологии
 
-- Приложение запускается под управлением сервера WSGI/ASGI.
-- Для отдачи [статических файлов](https://nginx.org/ru/docs/beginners_guide.html#static) используется **Nginx.**
-- Виртуализация осуществляется в **Docker.**
+* Приложение запускается под управлением сервера **WSGI/ASGI**.
+* Для отдачи [статических файлов](https://nginx.org/ru/docs/beginners_guide.html#static) используется **Nginx.**
+* Виртуализация осуществляется в **Docker.**
 
 ## Основные компоненты системы
 
@@ -18,7 +18,7 @@
 3. **PostgreSQL** — реляционное хранилище данных. 
 <!-- 4. **ETL** — механизм обновления данных между PostgreSQL и ES. -->
 
-## Схема сервиса
+### Схема сервиса
 
 ![all](images/all.png)
 
@@ -47,13 +47,16 @@ DATABASE=postgres
 
 ## Запуск контейнера:
 В корне проекта выполняем команду:
-`docker-compose up -d --build`
 
-## Наполнение контентом
+    $ docker-compose up -d --build
+
+### Наполнение контентом
 Что бы перенести фильмы из **SQLite** в **Postgres** необходимо запустить скрипт из папки `sqlite_to_postgres`:
 
 Убедитесь, что у вас установлен [psycopg2](https://pypi.org/project/psycopg2/):
-`pip install psycopg2-binary`
+
+    $ pip install psycopg2-binary
 
 При запущенном сервере, запускаем команду загрузки фильмов.
-`python sqlite_to_postgres/load_data.py`
+
+    $ python sqlite_to_postgres/load_data.py
