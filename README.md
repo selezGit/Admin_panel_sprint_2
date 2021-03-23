@@ -27,16 +27,21 @@
 В корне проекта необходимо создать файл `.env` со следующим содержанием:
 
 **[ Django ]** 
+```
 DEBUG=1
 SECRET_KEY = 'example'
 DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+```
 
 **[ Postgresql ]**
+```
 POSTGRES_USER = django_admin 
 POSTGRES_DB = movie_admin
 POSTGRES_PASSWORD = 1234
+```
 
 **[ Django DB ]**
+```
 SQL_ENGINE=django.db.backends.postgresql
 SQL_DATABASE=movie_admin
 SQL_USER=django_admin
@@ -44,7 +49,7 @@ SQL_PASSWORD=1234
 SQL_HOST=db
 SQL_PORT=5432
 DATABASE=postgres
-
+```
 ## Запуск контейнера:
 В корне проекта выполняем команду:
 
