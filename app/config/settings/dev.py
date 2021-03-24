@@ -1,3 +1,3 @@
-from .base import *
+from config.settings.base import *
 
-DEBUG = True
+# DEBUG = False

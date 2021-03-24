@@ -1,3 +1,3 @@
-from .base import *
+from config.settings.base import *
 
 # Пока оставим его пустым 

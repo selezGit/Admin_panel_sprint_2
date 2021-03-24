@@ -9,11 +9,9 @@ services:
     env_file:
       - ./.env
     user: "1000"
-    expose:
-      - 8000
     depends_on:
       - db
-    restart: always
+    # restart: always
   db:
     image: postgres:12.0-alpine
     env_file:

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Filmwork, Genre, Person, FilmworkPerson
+from movie_admin.models import Filmwork, Genre, Person, FilmworkPerson
 
 
 class PersonRoleInline(admin.TabularInline):
@@ -30,7 +30,9 @@ class AdminPerson(admin.ModelAdmin):
         'first_name', 'last_name', 'birth_date'
     )
     list_display = ('full_name', 'birth_date')
-    list_display_links = ('full_name')
+    list_display_links = ('full_name',)
+
+    search_fields = ('first_name', 'last_name')
 
     inlines = [
         FilmPersonInline
