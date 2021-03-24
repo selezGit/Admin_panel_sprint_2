@@ -75,7 +75,7 @@ class MoviesListApi(MoviesApiMixin, BaseListView):
         queryset = self.get_queryset()
         page_size = self.get_paginate_by(queryset)
 
-        paginator, page, queryset, _ = self.paginate_queryset(
+        paginator, page, _, _ = self.paginate_queryset(
             queryset,
             page_size
         )
@@ -86,8 +86,7 @@ class MoviesListApi(MoviesApiMixin, BaseListView):
                    'total_pages': paginator.num_pages,
                    'prev': page.previous_page_number() if page.has_previous() else None,
                    'next': page.next_page_number() if page.has_next() else None,
-                   'results': result
-                   }
+                   'results': result}
         return context
 
 
