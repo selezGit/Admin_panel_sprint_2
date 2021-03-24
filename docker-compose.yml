@@ -11,7 +11,7 @@ services:
     user: "1000"
     depends_on:
       - db
-    # restart: always
+    restart: always
   db:
     image: postgres:12.0-alpine
     env_file:
