@@ -4,12 +4,11 @@ from movie_admin.models import Filmwork, Genre, Person, FilmworkPerson
 
 class PersonRoleInline(admin.TabularInline):
     fields = (
-        'person', 'role'
+        'person', 'role',
     )
     model = FilmworkPerson
     extra = 0
-    ordering = ('person',)
-
+    # ordering = ('person',)
 
 class FilmPersonInline(admin.TabularInline):
     model = FilmworkPerson
@@ -35,7 +34,7 @@ class AdminPerson(admin.ModelAdmin):
     search_fields = ('first_name', 'last_name')
 
     inlines = [
-        FilmPersonInline
+        FilmPersonInline,
     ]
 
 
@@ -50,6 +49,7 @@ class FilmworkAdmin(admin.ModelAdmin):
 
     filter_horizontal = ('genres',)
 
+
     fieldsets = (
         (None, {
             'fields': (
@@ -63,7 +63,8 @@ class FilmworkAdmin(admin.ModelAdmin):
     )
 
     search_fields = ('title', 'description', 'id')
+    
 
-    inlines = [
-        PersonRoleInline
-    ]
+    inlines = (
+        PersonRoleInline,
+    )

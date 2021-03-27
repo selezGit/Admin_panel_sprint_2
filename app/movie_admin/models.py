@@ -8,7 +8,7 @@ from model_utils.models import TimeStampedModel
 
 class Genre(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(_('название'), max_length=255, unique=True)
+    name = models.CharField(_('название'), max_length=255, unique=True, db_index=True)
     description = models.TextField(_('описание'), blank=True, default='')
 
     class Meta:
@@ -73,7 +73,7 @@ class Filmwork(TimeStampedModel):
     genres = models.ManyToManyField(Genre)
     persons = models.ManyToManyField(
         Person,
-        through='FilmworkPerson'
+        through='FilmworkPerson',
     )
 
     class Meta:
@@ -87,14 +87,14 @@ class Filmwork(TimeStampedModel):
 
 class FilmworkPerson(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    filmwork = models.ForeignKey(Filmwork, on_delete=models.CASCADE)
+    filmwork = models.ForeignKey(Filmwork, on_delete=models.CASCADE, db_index=True)
     person = models.ForeignKey(
-        Person, on_delete=models.CASCADE, verbose_name=_('персона'))
+        Person, on_delete=models.CASCADE, verbose_name=_('персона'), db_index=True)
     role = models.CharField(_('роль'), max_length=20,
                             choices=PersonRoleType.choices)
 
     class Meta:
-        ordering = ['-id']
+        # ordering = ['-id']
         constraints = [
             models.UniqueConstraint(
                 fields=['filmwork', 'person', 'role'], name='person_film_work_uq')
