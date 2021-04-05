@@ -1,4 +1,4 @@
-# Admin panel sprint 2
+# Admin panel
 
 ## Описание сервиса
 
