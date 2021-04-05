@@ -1,6 +1,5 @@
 #!/bin/sh
 cp -r /usr/local/lib/python3.8/site-packages/django/contrib/admin/static/ /home/app/web/staticfiles/;
-
 if [ "$DATABASE" = "postgres" ]
 then
     echo "Waiting for postgres..."
@@ -15,5 +14,6 @@ fi
 python manage.py makemigrations movie_admin
 python manage.py migrate
 
-
+python ETL/main.py
 exec "$@"
+

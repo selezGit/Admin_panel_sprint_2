@@ -3,14 +3,13 @@ from movie_admin.models import Filmwork, Genre, Person, FilmworkPerson
 
 
 class PersonRoleInline(admin.TabularInline):
-    fields = (
-        'person', 'role',
-    )
+    autocomplete_fields = ('person', )
     model = FilmworkPerson
     extra = 0
-    # ordering = ('person',)
+    ordering = ('person',)
 
 class FilmPersonInline(admin.TabularInline):
+    autocomplete_fields = ('filmwork', )
     model = FilmworkPerson
     extra = 0
 

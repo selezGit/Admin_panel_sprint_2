@@ -20,14 +20,27 @@ services:
       - 5432:5432
     volumes:
       - ./pg-data:/var/lib/postgresql/data/
+      - ./app/create_schema.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
+  redis:
+    container_name: redis
+    image: redis:alpine3.13
+    volumes:
+      - ./redis-data:/data
+    ports:
+      - 6379:6379
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    container_name: elasticsearch
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    user: "1000"
+    volumes:
+      - ./es-data:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
-    environment:
-      - discovery.type=single-node
-    restart: always
+      - 9300:9300
   nginx:
     image: nginx:1.19.0-alpine
     volumes:
@@ -39,6 +52,14 @@ services:
     depends_on:
       - django
     restart: always
-
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.4.0
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
 volumes:
   static_volume:

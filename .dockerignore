@@ -20,6 +20,8 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+/es-data
+/redis-data
 
 # Installer logs
 pip-log.txt
@@ -48,6 +50,7 @@ ENV/
 .idea/
 *.iml
 .vscode
+.mypy_cache
 
 # auto generated docs
 doc.html

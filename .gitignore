@@ -48,7 +48,12 @@ ENV/
 .idea/
 *.iml
 .vscode
+.mypy_cache
 /pg-data
+/es-data
+/redis-data
+
+
 # auto generated docs
 doc.html
 

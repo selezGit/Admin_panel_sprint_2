@@ -12,6 +12,7 @@ class Genre(TimeStampedModel):
     description = models.TextField(_('описание'), blank=True, default='')
 
     class Meta:
+        db_table = 'content\".\"genre'
         ordering = ['-id']
         verbose_name = _('жанр')
         verbose_name_plural = _('жанры')
@@ -27,6 +28,7 @@ class Person(TimeStampedModel):
     birth_date = models.DateField(_('дата рождения'), null=True)
 
     class Meta:
+        db_table = 'content\".\"person'
         ordering = ['-id']
         constraints = [
             models.UniqueConstraint(
@@ -70,13 +72,14 @@ class Filmwork(TimeStampedModel):
                                MinValueValidator(0), MaxValueValidator(100)], blank=True, null=True)
     type = models.CharField(_('тип'), max_length=20,
                             choices=FilmworkType.choices)
-    genres = models.ManyToManyField(Genre)
+    genres = models.ManyToManyField(Genre, db_table='content\".\"genre_film_work')
     persons = models.ManyToManyField(
         Person,
         through='FilmworkPerson',
     )
 
     class Meta:
+        db_table = 'content\".\"film_work'
         ordering = ['-id']
         verbose_name = _('кинопроизведение')
         verbose_name_plural = _('кинопроизведения')
@@ -94,7 +97,8 @@ class FilmworkPerson(models.Model):
                             choices=PersonRoleType.choices)
 
     class Meta:
-        # ordering = ['-id']
+        db_table = 'content\".\"person_film_work'
+        ordering = ['-id']
         constraints = [
             models.UniqueConstraint(
                 fields=['filmwork', 'person', 'role'], name='person_film_work_uq')
